@@ -17,7 +17,7 @@ final class MovieListRouter: Coordinator {
   }
   
   func start() {
-    let viewModel = MovieListViewModel(router: self)
+    let viewModel = MovieListViewModel(router: self, network: NetworkManager())
     let controller = MovieListViewController(viewModel: viewModel)
     navigation.pushViewController(controller, animated: true)
   }

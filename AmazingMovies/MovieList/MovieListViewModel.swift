@@ -13,9 +13,17 @@ protocol MovieListRouting: AnyObject {
 
 final class MovieListViewModel {
   
+  private let network: Networking
   private unowned let router: MovieListRouting
   
-  init(router: MovieListRouting) {
+  init(router: MovieListRouting, network: Networking) {
     self.router = router
+    self.network = network
+  }
+  
+  func start() {
+    network.getMovies(page: 1) { result in
+      print(result)
+    }
   }
 }
