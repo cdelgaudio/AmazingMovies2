@@ -13,17 +13,43 @@ protocol MovieListRouting: AnyObject {
 
 final class MovieListViewModel {
   
+  enum State {
+    case loading, failed, compelted
+  }
+  
+  // MARK: Properties
+  
+  var state: Binder<State> { _state }
+  
+  private (set) var movieList: [MovieItemViewModel] = []
+  
+  private let _state: MutableBinder<State>
+  
   private let network: Networking
+  
   private unowned let router: MovieListRouting
   
   init(router: MovieListRouting, network: Networking) {
     self.router = router
     self.network = network
+    _state = MutableBinder(.failed)
   }
   
+  // MARK: Methods
+  
   func start() {
-    network.getMovies(page: 1) { result in
-      print(result)
+    guard case .failed = _state.value else { return }
+    _state.value = .loading
+    network.getMovies(page: 1) { [weak self] result in
+      guard let self = self else { return }
+      switch result {
+      case .success(let response):
+        self.movieList = response.results
+          .map { MovieItemViewModel(movie: $0, network: self.network) }
+        self._state.value = .compelted
+      case .failure:
+        self._state.value = .failed
+      }
     }
   }
 }
