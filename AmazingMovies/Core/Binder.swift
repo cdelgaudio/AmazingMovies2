@@ -8,17 +8,16 @@
 
 import Foundation
 
+// not thread safe but for a demo test probably I worked too much on it
 class Binder<Observed> {
-  
-  typealias Listener = (Observed) -> Void
-  
+    
   var value: Observed { _value }
 
   fileprivate var _value: Observed {
-    didSet { listener?(_value) }
+    didSet { listeners.forEach { $0.fire(_value) } }
   }
   
-  private var listener: Listener?
+  private var listeners: [Listener<Observed>] = []
   
   init(_ value: Observed) {
     self._value = value
@@ -27,21 +26,34 @@ class Binder<Observed> {
   func bind(
     fire: Bool = false,
     on queue: DispatchQueue? = nil,
-    listener: @escaping Listener
-  ) {
+    observer: @escaping (Observed) -> Void
+  ) -> Disposable {
+    let callback: (Observed) -> Void
     if let queue = queue {
-      self.listener = { value in
+      callback = { value in
         queue.async {
-          listener(value)
+          observer(value)
         }
       }
     } else {
-      self.listener = listener
+      callback = observer
     }
     
-    if fire {
-      self.listener?(_value)
+    let listener = Listener(fire: callback) { [weak self] in
+      self?.dispose($0)
     }
+    
+    listeners.append(listener)
+    
+    if fire {
+      callback(_value)
+    }
+    
+    return listener
+  }
+  
+  private func dispose(_ identifier: UUID) {
+    listeners.removeAll { $0.identifier == identifier }
   }
 }
 
@@ -52,3 +64,4 @@ final class MutableBinder<Observed>: Binder<Observed> {
     set { _value = newValue }
   }
 }
+

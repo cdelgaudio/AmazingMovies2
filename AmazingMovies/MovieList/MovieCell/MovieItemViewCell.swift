@@ -17,6 +17,8 @@ final class MovieItemViewCell: UICollectionViewCell {
   private let imageView = UIImageView()
   
   private var viewModel: MovieItemViewModel?
+  
+  private var disposeBag: [Disposable] = []
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -26,10 +28,38 @@ final class MovieItemViewCell: UICollectionViewCell {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    disposeBag.forEach { $0.dispose($0.identifier) }
+  }
     
   func configure(viewModel: MovieItemViewModel) {
     self.viewModel = viewModel
+    makeBindings()
     titleLabel.text = viewModel.title
+    viewModel.start()
+  }
+  
+  // MARK: Bindings
+  
+  private func makeBindings() {
+    guard let viewModel = viewModel else { return }
+    let disposable = viewModel.state.bind(fire: true, on: .main) { [weak self] result in
+      guard let self = self else { return }
+      switch result {
+      case .failed:
+        self.imageView.backgroundColor = .red
+        self.imageView.image = nil
+      case .loading:
+        self.imageView.backgroundColor = .yellow
+        self.imageView.image = nil
+      case .completed(let image):
+        self.imageView.backgroundColor = .clear
+        self.imageView.image = image
+      }
+    }
+    disposeBag.append(disposable)
   }
   
   // MARK: View

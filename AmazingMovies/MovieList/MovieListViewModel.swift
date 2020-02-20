@@ -9,6 +9,7 @@
 import Foundation
 
 protocol MovieListRouting: AnyObject {
+  func routeToMovieDetails(movie: Movie)
 }
 
 final class MovieListViewModel {
@@ -39,8 +40,18 @@ final class MovieListViewModel {
   
   func start() {
     guard case .failed = _state.value else { return }
+    callGetMovies(page: 1)
+  }
+  
+  func movieSelected(index: Int) {
+    router.routeToMovieDetails(movie: movieList[index].movie)
+  }
+  
+  // MARK: Network
+
+  private func callGetMovies(page: Int) {
     _state.value = .loading
-    network.getMovies(page: 1) { [weak self] result in
+    network.getMovies(page: page) { [weak self] result in
       guard let self = self else { return }
       switch result {
       case .success(let response):

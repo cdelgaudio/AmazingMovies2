@@ -17,6 +17,8 @@ final class MovieListViewController: UIViewController {
   
   private let viewModel: MovieListViewModel
   
+  private var disposeBag: [Disposable] = []
+  
   private let collectionView: UICollectionView = {
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.minimumLineSpacing = Constants.spacing
@@ -46,18 +48,20 @@ final class MovieListViewController: UIViewController {
   // MARK: Bindings
   
   private func makeBindings() {
-    viewModel.state.bind(on: .main) { [weak self] state in
-      guard let self = self else { return }
-      switch state {
-      case .loading:
-        self.collectionView.isHidden = true
-      case .failed:
-        self.collectionView.isHidden = true
-      case .compelted:
-        self.collectionView.isHidden = false
-        self.collectionView.reloadData()
+    disposeBag.append(
+      viewModel.state.bind(on: .main) { [weak self] state in
+        guard let self = self else { return }
+        switch state {
+        case .loading:
+          self.collectionView.isHidden = true
+        case .failed:
+          self.collectionView.isHidden = true
+        case .compelted:
+          self.collectionView.isHidden = false
+          self.collectionView.reloadData()
+        }
       }
-    }
+    )
   }
   
   // MARK: View

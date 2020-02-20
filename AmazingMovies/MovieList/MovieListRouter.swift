@@ -24,5 +24,7 @@ final class MovieListRouter: Coordinator {
 }
 
 extension MovieListRouter: MovieListRouting {
-  
+  func routeToMovieDetails(movie: Movie) {
+    
+  }
 }
