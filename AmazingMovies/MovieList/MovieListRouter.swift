@@ -10,8 +10,14 @@ import UIKit
 
 final class MovieListRouter: Coordinator {
   
-  private let navigation: UINavigationController
+  var child: Coordinator? {
+    didSet {
+      child?.start()
+    }
+  }
   
+  private let navigation: UINavigationController
+    
   init(navigation: UINavigationController) {
     self.navigation = navigation
   }
@@ -24,7 +30,8 @@ final class MovieListRouter: Coordinator {
 }
 
 extension MovieListRouter: MovieListRouting {
+  
   func routeToMovieDetails(movie: Movie) {
-    
+    child = MovieDetailsRouter(navigation: navigation, movie: movie)
   }
 }

@@ -26,6 +26,8 @@ final class MovieItemViewModel {
   
   let movie: Movie
   
+  // MARK: Init
+
   init(movie: Movie, network: Networking) {
     self.movie = movie
     self.network = network

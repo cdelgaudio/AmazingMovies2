@@ -27,6 +27,8 @@ final class MovieListViewController: UIViewController {
     return .init(frame: .zero, collectionViewLayout: flowLayout)
   }()
   
+  // MARK: Init
+
   init(viewModel: MovieListViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
@@ -106,13 +108,22 @@ extension MovieListViewController: UICollectionViewDataSource {
 // MARK: UITableViewDelegate
 
 extension MovieListViewController: UICollectionViewDelegate {
-  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath
+  ) {
+    viewModel.movieSelected(index: indexPath.row)
+  }
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
 
 extension MovieListViewController: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
     let width = (collectionView.bounds.width - Constants.spacing) / 2
     return CGSize(width: width, height: width * 1.5)
   }

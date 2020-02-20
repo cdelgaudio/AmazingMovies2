@@ -19,17 +19,19 @@ extension UIView {
     case right(margin: CGFloat = 0)
   }
   
-  func autoPinToSuperview(margin: CGFloat = 0) {
-    autoPinToSuperview(edges: [
-      .top(margin: margin),
-      .bottom(margin: margin),
-      .left(margin: margin),
-      .right(margin: margin)
-      ]
+  func autoPinToSuperview(margin: CGFloat = 0, safe: Bool = false) {
+    autoPinToSuperview(
+      edges: [
+        .top(margin: margin),
+        .bottom(margin: margin),
+        .left(margin: margin),
+        .right(margin: margin)
+      ],
+      safe: safe
     )
   }
   
-  func autoPinToSuperview(edges: [ViewEdge]) {
+  func autoPinToSuperview(edges: [ViewEdge], safe: Bool = false) {
     guard let superview = superview else {
       print("Superview not found")
       return
@@ -40,30 +42,50 @@ extension UIView {
       switch edge {
       case .top(let margin):
         constraints.append(
-          superview.topAnchor.constraint(
-            equalTo: self.topAnchor,
-            constant: -margin
+          safe
+            ? superview.safeAreaLayoutGuide.topAnchor.constraint(
+              equalTo: self.topAnchor,
+              constant: -margin
+              )
+            : superview.topAnchor.constraint(
+              equalTo: self.topAnchor,
+              constant: -margin
           )
         )
       case .bottom(let margin):
         constraints.append(
-          superview.bottomAnchor.constraint(
-            equalTo: self.bottomAnchor,
-            constant: margin
+          safe
+            ? superview.safeAreaLayoutGuide.bottomAnchor.constraint(
+              equalTo: self.bottomAnchor,
+              constant: margin
+              )
+            : superview.bottomAnchor.constraint(
+              equalTo: self.bottomAnchor,
+              constant: margin
           )
         )
       case .left(let margin):
         constraints.append(
-          superview.leftAnchor.constraint(
-            equalTo: self.leftAnchor,
-            constant: -margin
+          safe
+            ? superview.safeAreaLayoutGuide.leftAnchor.constraint(
+              equalTo: self.leftAnchor,
+              constant: -margin
+              )
+            : superview.leftAnchor.constraint(
+              equalTo: self.leftAnchor,
+              constant: -margin
           )
         )
       case .right(let margin):
         constraints.append(
-          superview.rightAnchor.constraint(
-            equalTo: self.rightAnchor,
-            constant: margin
+          safe
+            ? superview.safeAreaLayoutGuide.rightAnchor.constraint(
+              equalTo: self.rightAnchor,
+              constant: margin
+              )
+            : superview.rightAnchor.constraint(
+              equalTo: self.rightAnchor,
+              constant: margin
           )
         )
       }

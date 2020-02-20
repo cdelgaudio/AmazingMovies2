@@ -30,6 +30,8 @@ final class MovieListViewModel {
   
   private unowned let router: MovieListRouting
   
+  // MARK: Init
+
   init(router: MovieListRouting, network: Networking) {
     self.router = router
     self.network = network

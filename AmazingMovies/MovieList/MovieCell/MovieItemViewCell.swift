@@ -20,6 +20,8 @@ final class MovieItemViewCell: UICollectionViewCell {
   
   private var disposeBag: [Disposable] = []
 
+  // MARK: Init
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     makeView()
@@ -52,7 +54,7 @@ final class MovieItemViewCell: UICollectionViewCell {
         self.imageView.backgroundColor = .red
         self.imageView.image = nil
       case .loading:
-        self.imageView.backgroundColor = .yellow
+        self.imageView.backgroundColor = .lightGray
         self.imageView.image = nil
       case .completed(let image):
         self.imageView.backgroundColor = .clear

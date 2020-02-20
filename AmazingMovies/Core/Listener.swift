@@ -22,7 +22,7 @@ protocol Observable: AnyObject {
   var fire: (Observed) -> Void { get }
 }
 
-class Listener<Observed>: Observable, Disposable {
+final class Listener<Observed>: Observable, Disposable {
   
   let identifier = UUID()
   
