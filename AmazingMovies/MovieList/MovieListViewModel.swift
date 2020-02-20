@@ -28,13 +28,16 @@ final class MovieListViewModel {
   
   private let network: Networking
   
+  private let store: Storing
+
   private unowned let router: MovieListRouting
   
   // MARK: Init
 
-  init(router: MovieListRouting, network: Networking) {
+  init(router: MovieListRouting, network: Networking, store: Storing) {
     self.router = router
     self.network = network
+    self.store = store
     _state = MutableBinder(.failed)
   }
   
@@ -57,12 +60,23 @@ final class MovieListViewModel {
       guard let self = self else { return }
       switch result {
       case .success(let response):
+        self.store.movies = response.results
         self.movieList = response.results
           .map { MovieItemViewModel(movie: $0, network: self.network) }
         self._state.value = .compelted
       case .failure:
-        self._state.value = .failed
+        self.getStored()
       }
     }
+  }
+  
+  private func getStored() {
+    guard !store.movies.isEmpty else {
+      _state.value = .failed
+      return
+    }
+    movieList = store.movies
+      .map { MovieItemViewModel(movie: $0, network: network) }
+    _state.value = .compelted
   }
 }

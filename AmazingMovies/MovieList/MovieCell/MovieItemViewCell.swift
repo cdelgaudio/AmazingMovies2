@@ -51,9 +51,11 @@ final class MovieItemViewCell: UICollectionViewCell {
       guard let self = self else { return }
       switch result {
       case .failed:
+        // TODO: Asset missing image
         self.imageView.backgroundColor = .red
         self.imageView.image = nil
       case .loading:
+        // TODO: ActivityIndicator
         self.imageView.backgroundColor = .lightGray
         self.imageView.image = nil
       case .completed(let image):

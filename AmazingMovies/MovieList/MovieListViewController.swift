@@ -55,9 +55,16 @@ final class MovieListViewController: UIViewController {
         guard let self = self else { return }
         switch state {
         case .loading:
+          // TODO: ActivityIndicator
           self.collectionView.isHidden = true
         case .failed:
           self.collectionView.isHidden = true
+          let alert = UIAlertController(
+            title: "Error!",
+            message: "Connection Error",
+            preferredStyle: .alert
+          )
+          self.present(alert, animated: true)
         case .compelted:
           self.collectionView.isHidden = false
           self.collectionView.reloadData()

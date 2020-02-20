@@ -44,12 +44,14 @@ final class MovieItemViewModel {
   // MARK: Network
 
   func callDownloadImage() {
+    // TODO: Cancel Network
     guard let path = movie.posterPath else { return }
     _state.value = .loading
     network.downloadImage(path: path) { [weak self] result in
       guard let self = self else { return }
       switch result {
       case .success(let data):
+        // TODO: NSCache
         guard let image = UIImage(data: data) else { return }
         self._state.value = .completed(image: image)
       case .failure:
