@@ -11,7 +11,7 @@ import Foundation
 final class NetworkMock: Networking {
   
   enum MockType {
-    case success(movie: MoviesResponse? = nil, image: Data? = nil)
+    case success(movies: MoviesResponse? = nil, image: Data? = nil)
     case failure
     case loading
   }

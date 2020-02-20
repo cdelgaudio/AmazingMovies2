@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB28797C23FF0C8A00E545C8 /* MovieItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB28797B23FF0C8A00E545C8 /* MovieItemTests.swift */; };
+		DB28798023FF12CE00E545C8 /* MovieDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB28797F23FF12CE00E545C8 /* MovieDetailsTests.swift */; };
 		DB4F00F923FD5A3200EC07EF /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4F00F823FD5A3200EC07EF /* NetworkRequest.swift */; };
 		DB4F00FC23FD5B9E00EC07EF /* MoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4F00FB23FD5B9E00EC07EF /* MoviesResponse.swift */; };
 		DB4F00FE23FD5BC400EC07EF /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4F00FD23FD5BC400EC07EF /* Movie.swift */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB28797B23FF0C8A00E545C8 /* MovieItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieItemTests.swift; sourceTree = "<group>"; };
+		DB28797F23FF12CE00E545C8 /* MovieDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsTests.swift; sourceTree = "<group>"; };
 		DB4F00F823FD5A3200EC07EF /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		DB4F00FB23FD5B9E00EC07EF /* MoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesResponse.swift; sourceTree = "<group>"; };
 		DB4F00FD23FD5BC400EC07EF /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				DBFD1B4D23FD4AC3008C812D /* MovieListTests.swift */,
+				DB28797B23FF0C8A00E545C8 /* MovieItemTests.swift */,
+				DB28797F23FF12CE00E545C8 /* MovieDetailsTests.swift */,
 				DBFD1B4F23FD4AC3008C812D /* Info.plist */,
 			);
 			path = AmazingMoviesTests;
@@ -375,6 +381,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBFD1B4E23FD4AC3008C812D /* MovieListTests.swift in Sources */,
+				DB28798023FF12CE00E545C8 /* MovieDetailsTests.swift in Sources */,
+				DB28797C23FF0C8A00E545C8 /* MovieItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
