@@ -65,7 +65,7 @@ final class MovieListViewController: UIViewController {
             preferredStyle: .alert
           )
           self.present(alert, animated: true)
-        case .compelted:
+        case .completed:
           self.collectionView.isHidden = false
           self.collectionView.reloadData()
         }

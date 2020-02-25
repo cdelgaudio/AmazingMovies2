@@ -15,7 +15,7 @@ protocol MovieListRouting: AnyObject {
 final class MovieListViewModel {
   
   enum State {
-    case loading, failed, compelted
+    case loading, failed, completed
   }
   
   // MARK: Properties
@@ -55,7 +55,7 @@ final class MovieListViewModel {
   // MARK: Network
 
   private func callGetMovies(page: Int) {
-    _state.value = .loading
+    _state.modify(.loading)
     network.getMovies(page: page) { [weak self] result in
       guard let self = self else { return }
       switch result {
@@ -63,7 +63,7 @@ final class MovieListViewModel {
         self.store.movies = response.results
         self.movieList = response.results
           .map { MovieItemViewModel(movie: $0, network: self.network) }
-        self._state.value = .compelted
+        self._state.modify(.completed)
       case .failure:
         self.getStored()
       }
@@ -72,11 +72,11 @@ final class MovieListViewModel {
   
   private func getStored() {
     guard !store.movies.isEmpty else {
-      _state.value = .failed
+      _state.modify(.failed)
       return
     }
     movieList = store.movies
       .map { MovieItemViewModel(movie: $0, network: network) }
-    _state.value = .compelted
+    _state.modify(.completed)
   }
 }

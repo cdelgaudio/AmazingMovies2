@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB15F1F22403F53D00E97409 /* SafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB15F1F12403F53D00E97409 /* SafeArray.swift */; };
 		DB28797C23FF0C8A00E545C8 /* MovieItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB28797B23FF0C8A00E545C8 /* MovieItemTests.swift */; };
 		DB28798023FF12CE00E545C8 /* MovieDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB28797F23FF12CE00E545C8 /* MovieDetailsTests.swift */; };
 		DB4F00F923FD5A3200EC07EF /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4F00F823FD5A3200EC07EF /* NetworkRequest.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB15F1F12403F53D00E97409 /* SafeArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeArray.swift; sourceTree = "<group>"; };
 		DB28797B23FF0C8A00E545C8 /* MovieItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieItemTests.swift; sourceTree = "<group>"; };
 		DB28797F23FF12CE00E545C8 /* MovieDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsTests.swift; sourceTree = "<group>"; };
 		DB4F00F823FD5A3200EC07EF /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
@@ -169,11 +171,12 @@
 		DB9AAD6623FD4F9E00817E3D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				DB15F1F12403F53D00E97409 /* SafeArray.swift */,
 				DB9670A223FE9B34005AA3A5 /* Listener.swift */,
 				DB4F010223FD84DA00EC07EF /* Binder.swift */,
+				DB9AAD7023FD52F800817E3D /* Coordinator.swift */,
 				DB4F010123FD5D9F00EC07EF /* Extensions */,
 				DB4F00FA23FD5B1B00EC07EF /* Models */,
-				DB9AAD7023FD52F800817E3D /* Coordinator.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				DBFD1B3623FD4AC0008C812D /* SceneDelegate.swift in Sources */,
 				DB9670BD23FF0180005AA3A5 /* NetworkMock.swift in Sources */,
 				DB4F010523FD8DB000EC07EF /* UIViewExtension.swift in Sources */,
+				DB15F1F22403F53D00E97409 /* SafeArray.swift in Sources */,
 				DB9AAD6C23FD523900817E3D /* MovieListRouter.swift in Sources */,
 				DB9AAD6F23FD52A100817E3D /* MovieListViewModel.swift in Sources */,
 				DB9670AD23FEB10C005AA3A5 /* MovieDetailsViewController.swift in Sources */,

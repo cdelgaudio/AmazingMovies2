@@ -8,16 +8,14 @@
 
 import Foundation
 
-// not thread safe but for a demo test probably I worked too much on it
-class Binder<Observed> {
-    
-  var value: Observed { _value }
-
+class AbstractBinder<Observed>: Bindable {
+  typealias T = Observed
+  
   fileprivate var _value: Observed {
-    didSet { listeners.forEach { $0.fire(_value) } }
+    didSet { listeners.array.forEach { $0.fire(_value) } }
   }
   
-  private var listeners: [Listener<Observed>] = []
+  private var listeners = SafeArray(array: [Listener<Observed>]())
   
   init(_ value: Observed) {
     self._value = value
@@ -43,7 +41,7 @@ class Binder<Observed> {
       self?.dispose($0)
     }
     
-    listeners.append(listener)
+    listeners.array.append(listener)
     
     if fire {
       callback(_value)
@@ -53,15 +51,45 @@ class Binder<Observed> {
   }
   
   private func dispose(_ identifier: UUID) {
-    listeners.removeAll { $0.identifier == identifier }
+    listeners.array = listeners.array.filter { $0.identifier != identifier }
   }
 }
 
-final class MutableBinder<Observed>: Binder<Observed> {
+class Binder<Observed>: AbstractBinder<Observed>, StaticProperty {
+  var value: Observed { _value }
+}
+
+final class MutableBinder<Observed>: Binder<Observed>, DynamicProperty {
+  func modify(_ newValue: Observed) {
+    _value = newValue
+  }
+}
+
+protocol StaticProperty: Bindable {
+  var value: T { get }
   
-  override var value: Observed {
-    get { _value }
-    set { _value = newValue }
-  }
 }
 
+protocol DynamicProperty: StaticProperty {  
+  func modify(_ value: T)
+}
+
+protocol Bindable: AnyObject {
+  associatedtype T
+  
+  func bind(
+    fire: Bool,
+    on queue: DispatchQueue?,
+    observer: @escaping (T) -> Void
+  ) -> Disposable
+}
+
+extension Bindable {
+  func bind(
+    fire: Bool = false,
+    on queue: DispatchQueue? = nil,
+    observer: @escaping (T) -> Void
+  ) -> Disposable {
+    bind(fire: fire, on: queue, observer: observer)
+  }
+}
