@@ -61,7 +61,7 @@ class MovieListTests: XCTestCase {
     viewModel.start()
     
     switch viewModel.state.value {
-    case .compelted:
+    case .completed:
       XCTAssert(!viewModel.movieList.isEmpty)
     default:
       XCTAssert(false)
@@ -78,7 +78,7 @@ class MovieListTests: XCTestCase {
     viewModel.start()
     
     switch viewModel.state.value {
-    case .compelted:
+    case .completed:
       XCTAssert(!viewModel.movieList.isEmpty)
     default:
       XCTAssert(false)

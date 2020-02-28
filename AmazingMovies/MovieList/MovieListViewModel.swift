@@ -29,15 +29,18 @@ final class MovieListViewModel {
   private let network: Networking
   
   private let store: Storing
+  
+  private let cache: Caching
 
   private unowned let router: MovieListRouting
   
   // MARK: Init
 
-  init(router: MovieListRouting, network: Networking, store: Storing) {
-    self.router = router
-    self.network = network
-    self.store = store
+  init(components: MovieListComponents) {
+    router = components.router
+    network = components.network
+    store = components.store
+    cache = components.cache
     _state = MutableBinder(.failed)
   }
   
@@ -62,7 +65,13 @@ final class MovieListViewModel {
       case .success(let response):
         self.store.movies = response.results
         self.movieList = response.results
-          .map { MovieItemViewModel(movie: $0, network: self.network) }
+          .map {
+            MovieItemViewModel(
+              movie: $0,
+              network: self.network,
+              cache: self.cache
+            )
+        }
         self._state.modify(.completed)
       case .failure:
         self.getStored()
@@ -76,7 +85,7 @@ final class MovieListViewModel {
       return
     }
     movieList = store.movies
-      .map { MovieItemViewModel(movie: $0, network: network) }
+      .map { MovieItemViewModel(movie: $0, network: network, cache: cache) }
     _state.modify(.completed)
   }
 }

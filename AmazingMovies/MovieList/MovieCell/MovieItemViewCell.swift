@@ -58,9 +58,9 @@ final class MovieItemViewCell: UICollectionViewCell {
         // TODO: ActivityIndicator
         self.imageView.backgroundColor = .lightGray
         self.imageView.image = nil
-      case .completed(let image):
+      case .completed:
         self.imageView.backgroundColor = .clear
-        self.imageView.image = image
+        self.imageView.image = viewModel.image
       }
     }
     disposeBag.append(disposable)

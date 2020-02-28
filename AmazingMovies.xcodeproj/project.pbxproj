@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB15F1F22403F53D00E97409 /* SafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB15F1F12403F53D00E97409 /* SafeArray.swift */; };
+		DB15F1F5240598E100E97409 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB15F1F4240598E100E97409 /* CacheManager.swift */; };
 		DB28797C23FF0C8A00E545C8 /* MovieItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB28797B23FF0C8A00E545C8 /* MovieItemTests.swift */; };
 		DB28798023FF12CE00E545C8 /* MovieDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB28797F23FF12CE00E545C8 /* MovieDetailsTests.swift */; };
 		DB4F00F923FD5A3200EC07EF /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4F00F823FD5A3200EC07EF /* NetworkRequest.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		DB15F1F12403F53D00E97409 /* SafeArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeArray.swift; sourceTree = "<group>"; };
+		DB15F1F4240598E100E97409 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		DB28797B23FF0C8A00E545C8 /* MovieItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieItemTests.swift; sourceTree = "<group>"; };
 		DB28797F23FF12CE00E545C8 /* MovieDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsTests.swift; sourceTree = "<group>"; };
 		DB4F00F823FD5A3200EC07EF /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
@@ -102,6 +104,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB15F1F32405987000E97409 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				DB15F1F4240598E100E97409 /* CacheManager.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		DB4F00FA23FD5B1B00EC07EF /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +247,7 @@
 				DB9AAD6D23FD527300817E3D /* MovieList */,
 				DB9AAD6723FD4FA400817E3D /* Network */,
 				DB9AAD6523FD4D8600817E3D /* Resources */,
+				DB15F1F32405987000E97409 /* Cache */,
 				DB9AAD6823FD4FAF00817E3D /* Storage */,
 			);
 			path = AmazingMovies;
@@ -364,6 +375,7 @@
 				DB4F010023FD5D3500EC07EF /* NetworkManager.swift in Sources */,
 				DB4F010F23FDA7C900EC07EF /* UICollectionViewExtension.swift in Sources */,
 				DB4F00FE23FD5BC400EC07EF /* Movie.swift in Sources */,
+				DB15F1F5240598E100E97409 /* CacheManager.swift in Sources */,
 				DBFD1B3423FD4AC0008C812D /* AppDelegate.swift in Sources */,
 				DB9670B423FEE2AF005AA3A5 /* StoreManger.swift in Sources */,
 				DBFD1B3623FD4AC0008C812D /* SceneDelegate.swift in Sources */,

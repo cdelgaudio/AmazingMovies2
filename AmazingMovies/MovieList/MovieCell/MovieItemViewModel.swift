@@ -11,7 +11,7 @@ import UIKit
 final class MovieItemViewModel {
   
   enum State {
-    case failed, loading, completed(image: UIImage)
+    case failed, loading, completed
   }
   
   // MARK: Properties
@@ -20,17 +20,24 @@ final class MovieItemViewModel {
   
   var state: Binder<State> { _state }
   
+  var image: UIImage? {
+      cache.getImage(for: movie.posterPath)
+    }
+  
   private let _state: MutableBinder<State>
   
   private let network: Networking
+  
+  private let cache: Caching
   
   let movie: Movie
   
   // MARK: Init
 
-  init(movie: Movie, network: Networking) {
+  init(movie: Movie, network: Networking, cache: Caching) {
     self.movie = movie
     self.network = network
+    self.cache = cache
     _state = MutableBinder(.failed)
   }
   
@@ -51,9 +58,9 @@ final class MovieItemViewModel {
       guard let self = self else { return }
       switch result {
       case .success(let data):
-        // TODO: NSCache
         guard let image = UIImage(data: data) else { return }
-        self._state.modify(.completed(image: image))
+        self.cache.setImage(image: image, path: self.movie.posterPath)
+        self._state.modify(.completed)
       case .failure:
         self._state.modify(.failed)
       }

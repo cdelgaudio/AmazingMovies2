@@ -8,6 +8,13 @@
 
 import UIKit
 
+struct MovieListComponents {
+  let router: MovieListRouting
+  let network: Networking
+  let store: Storing
+  let cache: Caching
+}
+
 final class MovieListRouter: Coordinator {
   
   var child: Coordinator? {
@@ -23,10 +30,13 @@ final class MovieListRouter: Coordinator {
   }
   
   func start() {
-    let viewModel = MovieListViewModel(
+    
+    let viewModel = MovieListViewModel(components: .init(
       router: self,
       network: NetworkManager(),
-      store: StoreManger()
+      store: StoreManger(),
+      cache: CacheManager()
+      )
     )
     let controller = MovieListViewController(viewModel: viewModel)
     navigation.pushViewController(controller, animated: true)
