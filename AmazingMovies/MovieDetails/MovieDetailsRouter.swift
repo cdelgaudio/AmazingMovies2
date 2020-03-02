@@ -8,10 +8,8 @@
 
 import UIKit
 
-final class MovieDetailsRouter: Coordinator {
+final class MovieDetailsRouter: Router {
   
-  var child: Coordinator?
-
   private let navigation: UINavigationController
     
   private let movie: Movie
@@ -21,8 +19,9 @@ final class MovieDetailsRouter: Coordinator {
     self.movie = movie
   }
   
-  func start() {
-    // I prefere not inject the router in the ViewModel if it is not required
+  override func start() {
+    // I prefer not inject the router in the ViewModel if it is not required
+    navigation.delegate = self
     let viewModel = MovieDetailsViewModel(movie: movie)
     let controller = MovieDetailsViewController(viewModel: viewModel)
     navigation.pushViewController(controller, animated: true)

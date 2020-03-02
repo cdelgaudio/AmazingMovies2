@@ -30,7 +30,7 @@
 		DB9670C023FF08FA005AA3A5 /* StoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9670BF23FF08FA005AA3A5 /* StoreMock.swift */; };
 		DB9AAD6C23FD523900817E3D /* MovieListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AAD6B23FD523900817E3D /* MovieListRouter.swift */; };
 		DB9AAD6F23FD52A100817E3D /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AAD6E23FD52A100817E3D /* MovieListViewModel.swift */; };
-		DB9AAD7123FD52F800817E3D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AAD7023FD52F800817E3D /* Coordinator.swift */; };
+		DB9AAD7123FD52F800817E3D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AAD7023FD52F800817E3D /* Router.swift */; };
 		DBFD1B3423FD4AC0008C812D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFD1B3323FD4AC0008C812D /* AppDelegate.swift */; };
 		DBFD1B3623FD4AC0008C812D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFD1B3523FD4AC0008C812D /* SceneDelegate.swift */; };
 		DBFD1B3823FD4AC0008C812D /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFD1B3723FD4AC0008C812D /* MovieListViewController.swift */; };
@@ -73,7 +73,7 @@
 		DB9670BF23FF08FA005AA3A5 /* StoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMock.swift; sourceTree = "<group>"; };
 		DB9AAD6B23FD523900817E3D /* MovieListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListRouter.swift; sourceTree = "<group>"; };
 		DB9AAD6E23FD52A100817E3D /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
-		DB9AAD7023FD52F800817E3D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		DB9AAD7023FD52F800817E3D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		DBFD1B3023FD4AC0008C812D /* AmazingMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmazingMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFD1B3323FD4AC0008C812D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBFD1B3523FD4AC0008C812D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 				DB15F1F12403F53D00E97409 /* SafeArray.swift */,
 				DB9670A223FE9B34005AA3A5 /* Listener.swift */,
 				DB4F010223FD84DA00EC07EF /* Binder.swift */,
-				DB9AAD7023FD52F800817E3D /* Coordinator.swift */,
+				DB9AAD7023FD52F800817E3D /* Router.swift */,
 				DB4F010123FD5D9F00EC07EF /* Extensions */,
 				DB4F00FA23FD5B1B00EC07EF /* Models */,
 			);
@@ -385,7 +385,7 @@
 				DB9AAD6C23FD523900817E3D /* MovieListRouter.swift in Sources */,
 				DB9AAD6F23FD52A100817E3D /* MovieListViewModel.swift in Sources */,
 				DB9670AD23FEB10C005AA3A5 /* MovieDetailsViewController.swift in Sources */,
-				DB9AAD7123FD52F800817E3D /* Coordinator.swift in Sources */,
+				DB9AAD7123FD52F800817E3D /* Router.swift in Sources */,
 				DB9670C023FF08FA005AA3A5 /* StoreMock.swift in Sources */,
 				DB4F010B23FDA00F00EC07EF /* MovieItemViewCell.swift in Sources */,
 				DB9670A923FEB0F2005AA3A5 /* MovieDetailsRouter.swift in Sources */,

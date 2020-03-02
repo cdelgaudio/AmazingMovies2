@@ -15,13 +15,7 @@ struct MovieListComponents {
   let cache: Caching
 }
 
-final class MovieListRouter: Coordinator {
-  
-  var child: Coordinator? {
-    didSet {
-      child?.start()
-    }
-  }
+final class MovieListRouter: Router {
   
   private let navigation: UINavigationController
     
@@ -29,8 +23,8 @@ final class MovieListRouter: Coordinator {
     self.navigation = navigation
   }
   
-  func start() {
-    
+  override func start() {
+    navigation.delegate = self
     let viewModel = MovieListViewModel(components: .init(
       router: self,
       network: NetworkManager(),
